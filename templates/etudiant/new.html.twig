@@ -1,0 +1,15 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}New Etudiant{% endblock %}
+
+{% block body %}
+	<div style="display: block; width: 40%; margin:auto">
+    <h1>Creer un compte etudiant</h1>
+	<div style="display: block; width: 80%; margin:auto">
+    {{ include('etudiant/_form.html.twig') }}
+
+ 
+    </div>
+    </div>
+{% endblock %}

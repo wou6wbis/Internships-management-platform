@@ -1,0 +1,42 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}Liste des stages disponibles{% endblock %}
+
+{% block body %}
+    <h1>Liste des stages disponibles</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Departement</th>
+                <th>Niveau</th>
+                <th>Description</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stage in stages %}
+            <tr>
+                <td>{{ stage.id }}</td>
+                <td>{{ stage.titre }}</td>
+                <td>{{ stage.departement }}</td>
+                <td>{{ stage.niveau }}</td>
+                <td>{{ stage.description }}</td>
+                <td>
+                    <a href="{{ path('stage_show', {'id': stage.id}) }}">show</a>
+                  
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}

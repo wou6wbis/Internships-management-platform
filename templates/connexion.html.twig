@@ -1,0 +1,14 @@
+
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}Se Connecter{% endblock %}
+
+{% block body %}
+    <h1>Se Connecter</h1>
+
+    {{ include('connexion_form.html.twig') }}
+	
+    <a href="{{ path('etudiant_new') }}" class="btn btn-warning">Creer compte etudiant</a>	
+    <a href="{{ path('encadrant_new') }}" class="btn btn-primary">Creer compte encadrant</a>	
+{% endblock %}

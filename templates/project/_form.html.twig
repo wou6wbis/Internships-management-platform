@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+
+    {{ form_row(form.description) }}
+    {{ form_row(form.description) }}
+
+<h3>Tasks</h3>
+<ul class="todos" data-prototype="{{ form_widget(form.todos.vars.prototype)|e('html_attr') }}">
+
+        {# passer en revue chaque todo existante pour afficher ses champs #}
+        {% for todo in form.todos %}
+            <li>{{ form_row(todo.title) }} - {{ form_row(todo.completed) }}</li>
+        {% endfor %}
+    </ul>
+
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

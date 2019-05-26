@@ -1,0 +1,15 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}New Encadrant{% endblock %}
+
+{% block body %}
+<div style="display: block; width: 40%; margin:auto">
+    <h1>Creer un compte encadrant</h1>
+	<div style="display: block; width: 80%; margin:auto">
+    {{ include('encadrant/_form.html.twig') }}
+
+    <a href="{{ path('encadrant_index') }}">back to list</a>
+    
+    </div></div>
+{% endblock %}

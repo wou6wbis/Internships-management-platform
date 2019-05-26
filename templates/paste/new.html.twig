@@ -1,0 +1,11 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}New Paste{% endblock %}
+
+{% block main %}
+    <h1>Create new Paste</h1>
+
+    {{ include('paste/_form.html.twig') }}
+
+    <a href="{{ path('paste_index') }}">back to list</a>
+{% endblock %}

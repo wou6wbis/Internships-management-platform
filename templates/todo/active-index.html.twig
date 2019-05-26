@@ -1,0 +1,39 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}Todo index{% endblock %}
+
+{% block main %}
+    <h1>Todo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Todo</th>
+                <th>Completed</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <td> &nbsp;</td>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todos %}
+        	{%  if not todo.completed %}
+            <tr>
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.completed }}</td>
+                <td>{{ todo.created ? todo.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ todo.updated ? todo.updated|date('Y-m-d H:i:s') : '' }}</td>
+                <td><a href="{{ path('todo_show', {'id': todo.id}) }}">show</a></td>
+            </tr>
+            {% endif %}
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

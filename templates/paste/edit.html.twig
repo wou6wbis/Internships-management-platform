@@ -1,0 +1,13 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}Edit Paste{% endblock %}
+
+{% block main %}
+    <h1>Edit Paste</h1>
+
+    {{ include('paste/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('paste_index') }}">back to list</a>
+
+    {{ include('paste/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}Stage{% endblock %}
+
+{% block body %}
+    <h1>Stage</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ stage.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ stage.titre }}</td>
+            </tr>
+            <tr>
+                <th>Departement</th>
+                <td>{{ stage.departement }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ stage.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ stage.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+{{ dump(role) }}
+
+
+    
+    {%  if role== 'encadrant' %}
+    <a href="{{ path('stage_index_encadrant') }}">back to list</a>
+    <a href="{{ path('stage_edit', {'id': stage.id}) }}">edit</a>
+    {{ include('stage/_delete_form.html.twig') }}
+    
+    {% else %}
+    <a href="{{ path('stage_index_etudiant') }}">back to list</a>
+    <a href="{{ path('stage_edit', {'id': stage.id}) }}">postuler</a>
+    
+    
+    {% endif %}
+
+    
+{% endblock %}

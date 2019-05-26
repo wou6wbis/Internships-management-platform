@@ -1,0 +1,35 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}Encadrant index{% endblock %}
+
+{% block body %}
+    <h1>Encadrant index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for encadrant in encadrants %}
+            <tr>
+                <td>{{ encadrant.id }}</td>
+                <td>{{ encadrant.nom }}</td>
+                <td>{{ encadrant.prenom }}</td>
+               
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('encadrant_new') }}">Create new</a>
+{% endblock %}

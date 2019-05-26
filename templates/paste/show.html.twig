@@ -1,0 +1,34 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}Paste{% endblock %}
+
+{% block main %}
+    <h1>Paste</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ paste.id }}</td>
+            </tr>
+            <tr>
+                <th>Content</th>
+                <td>{{ paste.content }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ paste.created ? paste.created|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Content_type</th>
+                <td>{{ paste.contentType }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('paste_index') }}">back to list</a>
+
+    <a href="{{ path('paste_edit', {'id': paste.id}) }}">edit</a>
+
+    {{ include('paste/_delete_form.html.twig') }}
+{% endblock %}

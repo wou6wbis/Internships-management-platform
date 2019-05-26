@@ -1,0 +1,60 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}Todo index{% endblock %}
+
+{% block main %}
+    <h1>Todo index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Completed</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Project</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todos %}
+            <tr>
+                <td>{{ todo.id }}</td>
+                <td>
+          {% if todo.completed %}
+            <del>
+            {% endif %}
+            {{ todo.title }}
+            {% if todo.completed %}
+            </del>
+            {% endif %}   
+            </td> 
+             <td>{{ todo.completed ? 'Yes' : 'No' }}</td>
+                <td>{{ todo.created ? todo.created|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ todo.updated ? todo.updated|date('Y-m-d H:i:s') : '' }}</td>              
+                <td>
+                	{% if todo.project %}
+                	<a href="{{ path('project_show', {'id': todo.project.id}) }}" data-toggle="tooltip" title="{{ todo.project.description }}">{{ todo.project.title }}</a>
+                	{% endif %}
+                </td>  
+                <td>
+                    <a href="{{ path('todo_show', {'id': todo.id}) }}">show</a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('todo_edit', {'id': todo.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('todo_new') }}">Create new</a>
+    {% endif %}
+
+{% endblock %}

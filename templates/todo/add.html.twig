@@ -1,0 +1,13 @@
+{% extends 'baselayout.html.twig' %}
+
+{% block title %}New task for project {{ project.id }}{% endblock %}
+
+{% block main %}
+    <h1>Create new task</h1>
+
+	<p>For project "{{ project.title }}" :</p>
+	
+    {{ include('todo/_form.html.twig') }}
+
+    <a href="{{ path('todo_index') }}">back to list</a>
+{% endblock %}

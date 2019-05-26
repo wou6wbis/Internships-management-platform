@@ -1,0 +1,13 @@
+
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}New Stage{% endblock %}
+
+{% block body %}
+    <h1>Create new Stage</h1>
+
+    {{ include('stage/_form.html.twig') }}
+
+    <a href="{{ path('stage_index') }}">back to list</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'baselayout.html.twig' %}
+
+
+{% block title %}Edit Encadrant{% endblock %}
+
+{% block body %}
+    <h1>Edit Encadrant</h1>
+
+    {{ include('encadrant/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('encadrant_index') }}">back to list</a>
+
+    {{ include('encadrant/_delete_form.html.twig') }}
+{% endblock %}

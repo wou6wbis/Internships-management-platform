@@ -1,0 +1,79 @@
+{# templates/home.html.twig #}
+
+{# Template de la page d'accueil de l'application #}
+
+{% extends "baselayout.html.twig" %}
+
+{% block title %}{{ parent() }} - Welcome{% endblock %}
+
+{% block main %}
+
+<h1>Welcome</h1>
+
+<p>{{ welcome }}</p>
+<table type="table">
+<tr>
+<td><button id="todosbtn">Charger la liste des tâches</button></td>
+
+</tr>
+<tr>
+<td>
+<!-- réceptacle pour la liste des tâches chargée dynamiquement -->
+<div class="divtasks"></div>
+</td>
+<td>
+<!-- réceptacle pour la liste des pastes chargée dynamiquement -->
+<div class="divpastes"></div>
+</td>
+</tr>
+</table>
+
+{% endblock %} {# main #}
+
+{% block custompage_script %}
+<script>
+
+// Chargement de la liste des tâches en AJAX avec JQuery
+$(document).ready(function(){
+	// enregistrer un gestionnaire de clics sur le bouton d'id 'todosbtn'
+   	$("#todosbtn").click(function(){
+  		// récupération AJAX de la liste des tâches au format JSON
+		$.get("/api/todos", function(getresult){
+			// console.log(getresult);
+			// insertion d'une liste dans la cible prévue dans le DOM
+			$(".divtasks").empty();
+			var ul = $(".divtasks").append('<ul class="tasksul".>');
+			// Gestion des résultats de la liste récupérés
+			$(getresult).each( function(index, item) {
+				// ajout d'un élément dans la liste 
+				ul.append(
+					$(document.createElement('li')).text(item.title)
+				);
+			});
+		},
+		"json");
+ 	});
+    // enregistrer un gestionnaire de clics sur le bouton d'id 'pastesbtn'
+    $("#pastesbtn").click(function(){
+        // récupération AJAX de la liste des tâches au format JSON
+        $.get("/api/pastes", function(getresult){
+            // console.log(getresult);
+            $(".divpastes").empty();
+            // insertion d'une liste dans la cible prévue dans le DOM
+            var ul = $(".divpastes").append('<ul>');
+            // Gestion des résultats de la liste récupérés
+            $(getresult).each( function(index, item) {
+                // ajout d'un élément dans la liste 
+                ul.append(
+                    $(document.createElement('li')).text(item.content)
+                );
+            });
+        },
+        "json");
+    });
+ 
+});
+ 
+</script>
+
+{% endblock %} {# custompage_script #}
